@@ -1,0 +1,12 @@
+*
+
+!.gitignore
+!.bashrc
+!.config/
+!.config/nvim/
+!.config/nvim/**
+!.config/copyq/
+!.config/copyq/**
+!.p10k.zsh
+!.tmux.conf
+!.zshrc
