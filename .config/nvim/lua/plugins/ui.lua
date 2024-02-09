@@ -18,7 +18,7 @@ return {
             text_align = "center",
           },
         },
-        always_show_bufferline = true,
+        -- always_show_bufferline = true,
       },
     },
   },
