@@ -23,7 +23,7 @@ return {
         cursorline = true,
         width = 36,
         -- centralize_selection = true,
-        -- relativenumber = true,
+        relativenumber = true,
       },
       renderer = {
         highlight_git = "all",
