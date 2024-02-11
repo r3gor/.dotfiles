@@ -21,34 +21,33 @@ return {
     opts = {
       view = {
         cursorline = true,
-        width = 36,
-        -- centralize_selection = true,
+        width = 30,
         relativenumber = true,
       },
       renderer = {
-        highlight_git = "all",
-        highlight_diagnostics = "all",
-        highlight_opened_files = "all",
-        highlight_modified = "all",
-        highlight_bookmarks = "all",
-        highlight_clipboard = "name",
+        indent_width = 1,
         icons = {
           web_devicons = {
-            file = {
+            folder = {
               enable = true,
               color = true,
             },
-            folder = {
-              enable = false,
-              color = true,
+          },
+          git_placement = "signcolumn",
+          modified_placement = "after",
+          diagnostics_placement = "after",
+          bookmarks_placement = "signcolumn",
+          glyphs = {
+            git = {
+              untracked = "",
+              ignored = "☒",
+              unstaged = "✱", --✱
+              staged = "", -- "✚",
+              unmerged = "",
+              renamed = "➜",
+              deleted = "✖",
             },
           },
-          git_placement = "after",
-          modified_placement = "after",
-          diagnostics_placement = "signcolumn",
-          bookmarks_placement = "signcolumn",
-          padding = " ",
-          symlink_arrow = " ➛ ",
         },
       },
       actions = {
@@ -61,15 +60,11 @@ return {
       filters = {
         git_ignored = false,
       },
-      git = {
+      update_focused_file = {
         enable = true,
       },
-      diagnostics = {
-        enable = true,
-      },
-      modified = {
-        enable = true,
-      },
+      diagnostics = { enable = true },
+      modified = { enable = true },
     },
     config = function(_, opts)
       vim.g.loaded_netrw = 1

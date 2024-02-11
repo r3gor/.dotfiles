@@ -1,1 +1,4 @@
 *.dat
+copyq.lock
+copyq_no_session.ini
+copyq_geometry.ini
