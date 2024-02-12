@@ -100,4 +100,20 @@ return {
       current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      {
+        "<leader>ff",
+        function()
+          require("telescope.builtin").find_files({
+            hidden = true,
+            no_ignore = true,
+            file_ignore_patterns = { "node%_modules/.*", ".next/.*", ".git/.*", ".husky/.*" },
+          })
+        end,
+        desc = "Find All Files (root dir)",
+      },
+    },
+  },
 }
