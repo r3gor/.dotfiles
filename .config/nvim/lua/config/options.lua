@@ -34,33 +34,33 @@ if os.getenv("WSLENV") then
 end
 
 -- Get folding working with vscode neovim plugin
-if vim.fn.exists("g:vscode") then
-  vim.api.nvim_set_keymap("n", "zM", [[:call VSCodeNotify('editor.foldAll')<CR>]], { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "zR", [[:call VSCodeNotify('editor.unfoldAll')<CR>]], { noremap = true, silent = true })
-  vim.api.nvim_set_keymap("n", "zc", [[:call VSCodeNotify('editor.fold')<CR>]], { noremap = true, silent = true })
-  vim.api.nvim_set_keymap(
-    "n",
-    "zC",
-    [[:call VSCodeNotify('editor.foldRecursively')<CR>]],
-    { noremap = true, silent = true }
-  )
-  vim.api.nvim_set_keymap("n", "zo", [[:call VSCodeNotify('editor.unfold')<CR>]], { noremap = true, silent = true })
-  vim.api.nvim_set_keymap(
-    "n",
-    "zO",
-    [[:call VSCodeNotify('editor.unfoldRecursively')<CR>]],
-    { noremap = true, silent = true }
-  )
-  vim.api.nvim_set_keymap("n", "za", [[:call VSCodeNotify('editor.toggleFold')<CR>]], { noremap = true, silent = true })
-
-  function MoveCursor(direction)
-    if vim.fn.reg_recording() == "" and vim.fn.reg_executing() == "" then
-      return "g" .. direction
-    else
-      return direction
-    end
-  end
-
-  vim.api.nvim_set_keymap("n", "j", [[:lua MoveCursor('j')<CR>]], { noremap = true, expr = true })
-  vim.api.nvim_set_keymap("n", "k", [[:lua MoveCursor('k')<CR>]], { noremap = true, expr = true })
-end
+-- if vim.fn.exists("g:vscode") then
+--   vim.api.nvim_set_keymap("n", "zM", [[:call VSCodeNotify('editor.foldAll')<CR>]], { noremap = true, silent = true })
+--   vim.api.nvim_set_keymap("n", "zR", [[:call VSCodeNotify('editor.unfoldAll')<CR>]], { noremap = true, silent = true })
+--   vim.api.nvim_set_keymap("n", "zc", [[:call VSCodeNotify('editor.fold')<CR>]], { noremap = true, silent = true })
+--   vim.api.nvim_set_keymap(
+--     "n",
+--     "zC",
+--     [[:call VSCodeNotify('editor.foldRecursively')<CR>]],
+--     { noremap = true, silent = true }
+--   )
+--   vim.api.nvim_set_keymap("n", "zo", [[:call VSCodeNotify('editor.unfold')<CR>]], { noremap = true, silent = true })
+--   vim.api.nvim_set_keymap(
+--     "n",
+--     "zO",
+--     [[:call VSCodeNotify('editor.unfoldRecursively')<CR>]],
+--     { noremap = true, silent = true }
+--   )
+--   vim.api.nvim_set_keymap("n", "za", [[:call VSCodeNotify('editor.toggleFold')<CR>]], { noremap = true, silent = true })
+--
+--   function MoveCursor(direction)
+--     if vim.fn.reg_recording() == "" and vim.fn.reg_executing() == "" then
+--       return "g" .. direction
+--     else
+--       return direction
+--     end
+--   end
+--
+--   vim.api.nvim_set_keymap("n", "j", [[:lua MoveCursor('j')<CR>]], { noremap = true, expr = true })
+--   vim.api.nvim_set_keymap("n", "k", [[:lua MoveCursor('k')<CR>]], { noremap = true, expr = true })
+-- end
