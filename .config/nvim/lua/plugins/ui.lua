@@ -116,7 +116,13 @@ return {
 
       ]]
 
-      logo = string.rep("\n", 8) .. logo2 .. "\n\n"
+      local logo4 = [[
+
+      ~ reggi6 ~
+
+      ]]
+
+      logo = string.rep("\n", 8) .. logo4 .. "\n\n"
       opts.config.header = vim.split(logo, "\n")
     end,
   },
