@@ -11,7 +11,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- Fix conceallevel for markdown
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
-  command = "setlocal conceallevel=0",
+  -- command = "setlocal conceallevel=0",
+  command = "setlocal conceallevel=2", -- for obsidian.nvim
 })
 
 -- NvimTree auto close
