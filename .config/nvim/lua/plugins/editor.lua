@@ -40,7 +40,7 @@ return {
           glyphs = {
             git = {
               untracked = "",
-              ignored = "☒",
+              ignored = "",
               unstaged = "✱", --✱
               staged = "", -- "✚",
               unmerged = "",
@@ -90,6 +90,7 @@ return {
       numhl = true,
       max_file_length = 10000,
       current_line_blame = true,
+      word_diff = false,
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
@@ -103,6 +104,7 @@ return {
       { "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", desc = "Hunk Preview" },
       { "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<CR>", desc = "Hunk Preview Inline" },
       { "<leader>hd", "<cmd>Gitsigns toggle_deleted<CR>", desc = "Hunk Toggle Deleted" },
+      { "<leader>hw", "<cmd>Gitsigns toggle_word_diff<CR>", desc = "Toggle word diff" },
     },
   },
   {

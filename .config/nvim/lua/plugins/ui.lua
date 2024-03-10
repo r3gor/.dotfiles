@@ -2,6 +2,10 @@ return {
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
   {
     "akinsho/bufferline.nvim",
+    keys = {
+      { "[b", "<cmd>BufferLineMovePrev<cr>", desc = "Move prev buffer" },
+      { "]b", "<cmd>BufferLineMoveNext<cr>", desc = "Move next buffer" },
+    },
     opts = {
       options = {
         offsets = {
@@ -18,7 +22,7 @@ return {
             text_align = "center",
           },
         },
-        -- always_show_bufferline = true,
+        separator_style = "slant",
       },
     },
   },
