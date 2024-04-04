@@ -1,0 +1,172 @@
+{
+  "editor.mouseWheelZoom": true,
+  "editor.tabSize": 2,
+  "window.title": "${dirty}${rootName}${separator}${activeEditorShort}${separator}${profileName}${separator}${appName}",
+  "window.titleBarStyle": "custom",
+  "thunder-client.saveToWorkspace": true,
+  "git.autofetch": true,
+  "python.defaultInterpreterPath": "/home/rogrp/anaconda3/envs/gdp",
+  "editor.fontFamily": "'OverpassM Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.lineNumbers": "relative",
+  "editor.smoothScrolling": true,
+  "editor.wordWrap": "on",
+  "vim.leader": " ",
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": [],
+      "before": ["u"],
+      "commands": [{ "args": [], "command": "undo" }]
+    },
+    {
+      "after": [],
+      "before": ["<C-r>"],
+      "commands": [{ "args": [], "command": "redo" }]
+    }
+  ],
+  "vim.showMarksInGutter": true,
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.commandlineinprogress": "#000000",
+  "vim.statusBarColors.insert": "#800020",
+  "vim.statusBarColors.normal": "#00003f",
+  "vim.statusBarColors.searchinprogressmode": "#000000",
+  "vim.visualstar": true,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+  "vim.foldfix": true,
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "mjml.autoPreview": true,
+  "mjml.previewBackgroundColor": "#FFFFFF",
+  "workbench.iconTheme": "Monokai Pro Icons",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "[mjml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "eslint.format.enable": true,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.semanticTokenColorCustomizations": {},
+  "workbench.activityBar.location": "hidden",
+  "vim.commandLineModeKeyBindings": [],
+  "vim.normalModeKeyBindings": [
+    /* Splits */
+    {
+      "before": ["<C-a>", "|"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["<C-a>", "-"],
+      "commands": ["workbench.action.splitEditorOrthogonal"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.focusBelowGroup"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.focusAboveGroup"]
+    },
+    {
+      "before": ["<C-a>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["<C-a>", "m"],
+      "commands": ["workbench.action.toggleEditorWidths"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["revealInExplorer"]
+    },
+    {
+      // maybe this should be in keybindings.json for works in global
+      "before": ["<leader>", "u", "s"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "b", "p"],
+      "commands": ["extension.togglePinEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "P"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
+    },
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActivePinnedEditor"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["<C-m>"],
+      "commands": ["extension.vim_ctrl+i"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [],
+  "eslint.enable": false,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Monokai Dimmed",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "workbench.settings.openDefaultKeybindings": true,
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#2f7c47",
+    "statusBar.background": "#00003f",
+    "statusBar.noFolderBackground": "#00003f",
+    "statusBar.debuggingBackground": "#00003f",
+    "statusBar.foreground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff",
+    "activityBar.activeBackground": "#2f7c47",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#422c74",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#2f7c47",
+    "statusBarItem.hoverBackground": "#2f7c47",
+    "statusBarItem.remoteBackground": "#215732",
+    "statusBarItem.remoteForeground": "#e7e7e7"
+  }
+}

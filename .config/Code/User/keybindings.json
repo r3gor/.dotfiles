@@ -1,0 +1,193 @@
+// Place your key bindings in this file to override the defaults
+[
+  // VIM srolling
+  {
+    "command": "germanScroll.arminUp",
+    "key": "ctrl+y",
+    "mac": "cmd+y",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "command": "germanScroll.arminDown",
+    "key": "ctrl+e",
+    "mac": "cmd+e",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "command": "germanScroll.bertholdUp",
+    "key": "ctrl+u",
+    "mac": "cmd+u",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "command": "germanScroll.bertholdDown",
+    "key": "ctrl+d",
+    "mac": "cmd+d",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "command": "germanScroll.christaUp",
+    "key": "ctrl+b",
+    "mac": "cmd+b",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "command": "germanScroll.christaDown",
+    "key": "ctrl+f",
+    "mac": "cmd+f",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+a shift+\\",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "/",
+    "command": "list.find",
+    "when": "listFocus && listSupportsFind && !inputFocus"
+  },
+
+  // Navigation
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // ============== Unbindings ===================
+  {
+    "key": "ctrl+/",
+    "command": "-github.copilot.acceptCursorPanelSolution",
+    "when": "github.copilot.activated && github.copilot.panelVisible"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-toggleExplainMode",
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-workbench.action.terminal.sendSequence",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+/",
+    "command": "-editor.action.accessibleViewAcceptInlineCompletion",
+    "when": "accessibleViewIsShown && accessibleViewCurrentProviderId == 'inlineCompletions'"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+shift+5",
+    "command": "-workbench.action.terminal.split",
+    "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "alt+down",
+    "command": "-workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+up",
+    "command": "-workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !inputFocus"
+  },
+  {
+    "key": "d",
+    "command": "moveFileToTrash",
+    "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "tab",
+    "command": "filesExplorer.openFilePreserveFocus",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
+  },
+  {
+    "key": "space",
+    "command": "-filesExplorer.openFilePreserveFocus",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
+  },
+  {
+    "key": "tab",
+    "command": "list.toggleExpand",
+    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
+  },
+  {
+    "key": "space",
+    "command": "-list.toggleExpand",
+    "when": "listFocus && !inputFocus && !treestickyScrollFocused"
+  },
+]
