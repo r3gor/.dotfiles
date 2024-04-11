@@ -6,7 +6,7 @@
   "thunder-client.saveToWorkspace": true,
   "git.autofetch": true,
   "python.defaultInterpreterPath": "/home/rogrp/anaconda3/envs/gdp",
-  "editor.fontFamily": "'OverpassM Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'OverpassM Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
   "editor.lineNumbers": "relative",
   "editor.smoothScrolling": true,
   "editor.wordWrap": "on",
