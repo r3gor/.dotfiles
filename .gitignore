@@ -1,6 +1,7 @@
 *
 
 !.gitignore
+!.gitconfig
 !.bashrc
 !.config/
 !.config/nvim/
