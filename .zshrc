@@ -41,6 +41,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 export PATH="$PATH:/home/rogrp/.local/share/JetBrains/Toolbox/scripts"
 export PATH="$PATH:/home/rogrp/Personal/bin"
+export PATH="$PATH:~/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -76,4 +77,8 @@ alias meld="flatpak run org.gnome.meld"
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 
-export BROWSER=/usr/bin/wslview
+IS_WSL=$(~/bin/iswsl.sh)
+
+if [ "$IS_WSL" -eq 1 ]; then
+    export BROWSER=/usr/bin/wslview
+fi

@@ -17,6 +17,8 @@ vim.g.autoformat = false
 -- enable local configs
 vim.o.exrc = true
 
+vim.o.list = false
+
 -- WSL nvim options
 if os.getenv("WSL_DISTRO_NAME") then
   print("RUNNING ON WSL")

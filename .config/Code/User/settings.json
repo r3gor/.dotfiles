@@ -27,8 +27,9 @@
   "vim.showMarksInGutter": true,
   "vim.statusBarColorControl": true,
   "vim.statusBarColors.commandlineinprogress": "#000000",
-  "vim.statusBarColors.insert": "#800020",
-  "vim.statusBarColors.normal": "#00003f",
+  // "vim.statusBarColors.insert": "#800020",
+  "vim.statusBarColors.insert": "#384d3a",
+  "vim.statusBarColors.normal": "#1f1f33",
   "vim.statusBarColors.searchinprogressmode": "#000000",
   "vim.visualstar": true,
   "zenMode.hideLineNumbers": false,
@@ -61,7 +62,6 @@
   "eslint.format.enable": true,
   "editor.formatOnSaveMode": "modificationsIfAvailable",
   "editor.semanticTokenColorCustomizations": {},
-  "workbench.activityBar.location": "hidden",
   "vim.commandLineModeKeyBindings": [],
   "vim.normalModeKeyBindings": [
     /* Splits */
@@ -146,16 +146,15 @@
   "vim.visualModeKeyBindings": [],
   "eslint.enable": false,
   "window.zoomLevel": 1,
-  "workbench.colorTheme": "Monokai Dimmed",
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "workbench.settings.openDefaultKeybindings": true,
   "workbench.colorCustomizations": {
     "activityBar.background": "#2f7c47",
-    "statusBar.background": "#00003f",
-    "statusBar.noFolderBackground": "#00003f",
-    "statusBar.debuggingBackground": "#00003f",
+    "statusBar.background": "#1f1f33",
+    "statusBar.noFolderBackground": "#1f1f33",
+    "statusBar.debuggingBackground": "#1f1f33",
     "statusBar.foreground": "#ffffff",
     "statusBar.debuggingForeground": "#ffffff",
     "activityBar.activeBackground": "#2f7c47",
@@ -168,5 +167,12 @@
     "statusBarItem.hoverBackground": "#2f7c47",
     "statusBarItem.remoteBackground": "#215732",
     "statusBarItem.remoteForeground": "#e7e7e7"
-  }
+  },
+  "workbench.tree.enableStickyScroll": false,
+  "editor.stickyScroll.enabled": false,
+  "breadcrumbs.enabled": false,
+  "window.customTitleBarVisibility": "auto",
+  "editor.minimap.enabled": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.activityBar.location": "hidden"
 }
