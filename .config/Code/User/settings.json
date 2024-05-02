@@ -174,5 +174,6 @@
   "window.customTitleBarVisibility": "auto",
   "editor.minimap.enabled": false,
   "workbench.editor.editorActionsLocation": "hidden",
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Community Material Theme Ocean High Contrast"
 }
