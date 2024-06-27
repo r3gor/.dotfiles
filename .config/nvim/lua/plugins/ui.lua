@@ -1,7 +1,8 @@
 return {
-  { "lukas-reineke/indent-blankline.nvim", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", enabled = true },
   {
     "akinsho/bufferline.nvim",
+    enabled = false,
     keys = {
       { "[b", "<cmd>BufferLineMovePrev<cr>", desc = "Move prev buffer" },
       { "]b", "<cmd>BufferLineMoveNext<cr>", desc = "Move next buffer" },
