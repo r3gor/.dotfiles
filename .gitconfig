@@ -14,10 +14,11 @@
 
 [merge]
   conflictstyle = diff3
+	tool = meld
 
 [diff]
   colorMoved = default
-  tool = vimdiff
+	tool = meld
 
 [alias]
   lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
@@ -28,3 +29,7 @@
   dog = log --all --decorate --oneline --graph
   pullh = !git pull origin \"$(git rev-parse --abbrev-ref HEAD)\"
   pushh = !git push origin \"$(git rev-parse --abbrev-ref HEAD)\"
+[difftool "meld"]
+	cmd = flatpak run org.gnome.meld \"$LOCAL\" \"$REMOTE\"
+[mergetool "meld"]
+	cmd = flatpak run org.gnome.meld \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output \"$MERGED\"
