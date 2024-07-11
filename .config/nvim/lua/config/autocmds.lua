@@ -39,3 +39,12 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end
   end,
 })
+
+-- Crea un autocomando que se ejecuta después de que se lea un buffer de quickfix
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "quickfix",
+  callback = function()
+    -- Define el mapeo <CR> en el buffer local de la ventana de quickfix
+    vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>", { noremap = true, silent = true })
+  end,
+})
