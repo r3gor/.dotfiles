@@ -1,8 +1,11 @@
 return {
   "stevearc/aerial.nvim",
+  event = "LazyFile",
+  enabled = true,
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
+    "folke/edgy.nvim",
   },
   opts = {
     backends = { "lsp", "markdown", "man" },

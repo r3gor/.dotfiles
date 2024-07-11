@@ -6,10 +6,16 @@ return {
     priority = 1000,
     opts = function()
       return {
-        transparent = true,
+        transparent = false,
+        --- You can override specific color groups to use other groups or a hex color
+        --- function will be called with a ColorScheme table
+        ---@param colors ColorScheme
+        on_colors = function(colors)
+          colors.bg = "#101010"
+        end,
       }
     end,
-    enabled = false,
+    enabled = true,
   },
   {
     "folke/tokyonight.nvim",
@@ -37,7 +43,16 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    enabled = false,
+    enabled = true,
+    opts = {
+      color_overrides = {
+        mocha = {
+          base = "#101010",
+          mantle = "#000000",
+          crust = "#000000",
+        },
+      },
+    },
   },
   {
     "ellisonleao/gruvbox.nvim",
@@ -49,7 +64,9 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "tokyonight-night",
-      colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox",
+      colorscheme = "solarized-osaka",
+      -- colorscheme = "catppuccin-mocha",
     },
   },
 }
