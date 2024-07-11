@@ -26,3 +26,8 @@ end, opts)
 keymap.set("n", "te", ":tabedit", opts)
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+
+-- paste no replace current pasting register
+vim.keymap.set("x", "p", function()
+  return 'pgv"' .. vim.v.register .. "y"
+end, { remap = false, expr = true })
