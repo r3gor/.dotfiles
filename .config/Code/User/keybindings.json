@@ -25,18 +25,18 @@
     "mac": "cmd+d",
     "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
   },
-  {
-    "command": "germanScroll.christaUp",
-    "key": "ctrl+b",
-    "mac": "cmd+b",
-    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "command": "germanScroll.christaDown",
-    "key": "ctrl+f",
-    "mac": "cmd+f",
-    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
-  },
+  // {
+  //   "command": "germanScroll.christaUp",
+  //   "key": "ctrl+b",
+  //   "mac": "cmd+b",
+  //   "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  // },
+  // {
+  //   "command": "germanScroll.christaDown",
+  //   "key": "ctrl+f",
+  //   "mac": "cmd+f",
+  //   "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  // },
   {
     "key": "ctrl+/",
     "command": "workbench.action.terminal.toggleTerminal",
@@ -73,7 +73,45 @@
     "when": "listFocus && listSupportsFind && !inputFocus"
   },
 
-  // Navigation
+  // Split
+  {
+    "key": "ctrl+a shift+\\", // shift+\\ = |
+    "command": "workbench.action.splitEditor",
+    "when": "inputFocus && vim.mode=='Normal' && editorFocus"
+  },
+  {
+    "key": "ctrl+a -",
+    "command": "workbench.action.splitEditorOrthogonal",
+    "when": "inputFocus && vim.mode=='Normal' && editorFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup"
+  },
+  {
+    "key": "ctrl+a m",
+    "command": "workbench.action.toggleEditorWidths"
+  },
+
+  // Zen mode
+  {
+    "key": "ctrl+a z",
+    "command": "workbench.action.toggleZenMode"
+  },
+
+  // Navigation options
   {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpenSelectPrevious",
@@ -113,6 +151,26 @@
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusFirstEditorGroup",
+    "when": "explorerViewletFocus || filesExplorerFocus || openEditorsFocus"
+  },
+  // Multiselection next
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
   },
   // ============== Unbindings ===================
   {
@@ -190,4 +248,16 @@
     "command": "-list.toggleExpand",
     "when": "listFocus && !inputFocus && !treestickyScrollFocused"
   },
+  {
+    "key": "ctrl+g g",
+    "command": "workbench.scm.focus"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "workbench.action.increaseViewSize"
+  },
+  {
+    "key": "ctrl+alt+h",
+    "command": "workbench.action.decreaseViewSize"
+  }
 ]

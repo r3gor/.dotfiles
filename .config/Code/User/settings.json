@@ -10,31 +10,8 @@
   "editor.lineNumbers": "relative",
   "editor.smoothScrolling": true,
   "editor.wordWrap": "on",
-  "vim.leader": " ",
-  "vim.useSystemClipboard": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "after": [],
-      "before": ["u"],
-      "commands": [{ "args": [], "command": "undo" }]
-    },
-    {
-      "after": [],
-      "before": ["<C-r>"],
-      "commands": [{ "args": [], "command": "redo" }]
-    }
-  ],
-  "vim.showMarksInGutter": true,
-  "vim.statusBarColorControl": true,
-  "vim.statusBarColors.commandlineinprogress": "#000000",
-  // "vim.statusBarColors.insert": "#800020",
-  "vim.statusBarColors.insert": "#384d3a",
-  "vim.statusBarColors.normal": "#1f1f33",
-  "vim.statusBarColors.searchinprogressmode": "#000000",
-  "vim.visualstar": true,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  "vim.foldfix": true,
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -62,41 +39,38 @@
   "eslint.format.enable": true,
   "editor.formatOnSaveMode": "modificationsIfAvailable",
   "editor.semanticTokenColorCustomizations": {},
+
+  "vim.leader": " ",
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": [],
+      "before": ["u"],
+      "commands": [{ "args": [], "command": "undo" }]
+    },
+    {
+      "after": [],
+      "before": ["<C-r>"],
+      "commands": [{ "args": [], "command": "redo" }]
+    }
+  ],
+  "vim.showMarksInGutter": true,
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.commandlineinprogress": "#000000",
+  "vim.statusBarColors.insert": "#384d3a",
+  "vim.statusBarColors.normal": "#1f1f33",
+  "vim.statusBarColors.searchinprogressmode": "#000000",
+  "vim.visualstar": true,
+  "vim.foldfix": true,
   "vim.commandLineModeKeyBindings": [],
+  "vim.handleKeys": { 
+    "<C-b>": false,
+    "<C-n>": false,
+    "<C-p>": false,
+    "<C-w>": false,
+  },
   "vim.normalModeKeyBindings": [
     /* Splits */
-    {
-      "before": ["<C-a>", "|"],
-      "commands": ["workbench.action.splitEditor"]
-    },
-    {
-      "before": ["<C-a>", "-"],
-      "commands": ["workbench.action.splitEditorOrthogonal"]
-    },
-    {
-      "before": ["<C-l>"],
-      "commands": ["workbench.action.focusRightGroup"]
-    },
-    {
-      "before": ["<C-h>"],
-      "commands": ["workbench.action.focusLeftGroup"]
-    },
-    {
-      "before": ["<C-j>"],
-      "commands": ["workbench.action.focusBelowGroup"]
-    },
-    {
-      "before": ["<C-k>"],
-      "commands": ["workbench.action.focusAboveGroup"]
-    },
-    {
-      "before": ["<C-a>", "z"],
-      "commands": ["workbench.action.toggleZenMode"]
-    },
-    {
-      "before": ["<C-a>", "m"],
-      "commands": ["workbench.action.toggleEditorWidths"]
-    },
     {
       "before": ["<leader>", "e"],
       "commands": ["revealInExplorer"]
@@ -141,6 +115,10 @@
     {
       "before": ["<C-m>"],
       "commands": ["extension.vim_ctrl+i"]
+    },
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["git.openChange"]
     }
   ],
   "vim.visualModeKeyBindings": [],
@@ -175,5 +153,14 @@
   "editor.minimap.enabled": false,
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)"
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "window.menuBarVisibility": "toggle",
+  "gitlens.keymap": "none",
+  "gitlens.mode.statusBar.alignment": "left",
+  "git.openDiffOnClick": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.showTabs": "single",
+  "zenMode.showTabs": "single",
+  "apc.font.family": "CaskaydiaMono Nerd Font"
 }
