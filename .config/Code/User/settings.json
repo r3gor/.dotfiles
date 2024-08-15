@@ -20,7 +20,7 @@
   },
   "mjml.autoPreview": true,
   "mjml.previewBackgroundColor": "#FFFFFF",
-  "workbench.iconTheme": "Monokai Pro Icons",
+  "workbench.iconTheme": "vscode-icons",
   "github.copilot.enable": {
     "*": true,
     "plaintext": false,
@@ -67,7 +67,9 @@
     "<C-b>": false,
     "<C-n>": false,
     "<C-p>": false,
-    "<C-w>": false,
+    "<C-]>": false,
+    "<C-[>": false,
+    // "<C-w>": false,
   },
   "vim.normalModeKeyBindings": [
     /* Splits */
@@ -119,7 +121,31 @@
     {
       "before": ["<leader>", "g", "g"],
       "commands": ["git.openChange"]
-    }
+    },
+    {
+      "before": ["]", "h"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["[", "h"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["<leader>", "h", "p"],
+      "commands": ["editor.action.dirtydiff.next"]
+    },
+    {
+      "before": ["<leader>", "u", "w"],
+      "commands": ["editor.action.toggleWordWrap"]
+    }, 
   ],
   "vim.visualModeKeyBindings": [],
   "eslint.enable": false,
@@ -146,21 +172,39 @@
     "statusBarItem.remoteBackground": "#215732",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "workbench.tree.enableStickyScroll": false,
   "editor.stickyScroll.enabled": false,
   "breadcrumbs.enabled": false,
   "window.customTitleBarVisibility": "auto",
   "editor.minimap.enabled": false,
-  "workbench.editor.editorActionsLocation": "hidden",
-  "workbench.activityBar.location": "hidden",
-  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
   "window.menuBarVisibility": "toggle",
   "gitlens.keymap": "none",
   "gitlens.mode.statusBar.alignment": "left",
-  "git.openDiffOnClick": false,
   "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
   "workbench.editor.showTabs": "single",
   "zenMode.showTabs": "single",
-  "apc.font.family": "CaskaydiaMono Nerd Font"
+  "apc.font.family": "CaskaydiaMono Nerd Font",
+  "workbench.activityBar.location": "hidden",
+  "settingsSync.keybindingsPerPlatform": false,
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+  "apc.stylesheet": {
+    ".quick-input-widget": "width: 100% !important; left: 300px"
+  },
+  "git.showActionButton": {
+    "commit": false,
+    "publish": false
+  },
+  "git.showCommitInput": false,
+  "search.quickAccess.preserveInput": true,
+  "search.quickOpen.includeSymbols": true,
+  "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
+  "search.searchEditor.reusePriorSearchConfiguration": true,
+  "search.showLineNumbers": true,
+  "search.smartCase": true,
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.tree.enableStickyScroll": false
 }

@@ -43,12 +43,12 @@
     "when": "terminal.active"
   },
   {
-    "key": "ctrl+l",
+    "key": "alt+l",
     "command": "workbench.action.terminal.focusNextPane",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
   {
-    "key": "ctrl+h",
+    "key": "alt+h",
     "command": "workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   },
@@ -58,12 +58,12 @@
     "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
   },
   {
-    "key": "ctrl+n",
+    "key": "ctrl+]",
     "command": "search.action.focusNextSearchResult",
     "when": "hasSearchResult || inSearchEditor"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+[",
     "command": "search.action.focusPreviousSearchResult",
     "when": "hasSearchResult || inSearchEditor"
   },
@@ -77,12 +77,14 @@
   {
     "key": "ctrl+a shift+\\", // shift+\\ = |
     "command": "workbench.action.splitEditor",
-    "when": "inputFocus && vim.mode=='Normal' && editorFocus"
+    "when": "!terminalFocus",
+    // "when": "inputFocus && vim.mode=='Normal' && editorFocus"
   },
   {
     "key": "ctrl+a -",
     "command": "workbench.action.splitEditorOrthogonal",
-    "when": "inputFocus && vim.mode=='Normal' && editorFocus"
+    "when": "!terminalFocus",
+    // "when": "inputFocus && vim.mode=='Normal' && editorFocus"
   },
   {
     "key": "ctrl+l",
@@ -165,7 +167,7 @@
   {
     "key": "ctrl+n",
     "command": "editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
+    "when": "editorFocus && vim.active && vim.mode == 'Visual'"
   },
   {
     "key": "ctrl+d",
@@ -259,5 +261,163 @@
   {
     "key": "ctrl+alt+h",
     "command": "workbench.action.decreaseViewSize"
+  },
+  {
+    "command": "germanScroll.christaDown",
+    "key": "ctrl+f",
+    "mac": "cmd+f",
+    "when": "vim.active && editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "] h",
+    "command": "workbench.action.compareEditor.nextChange",
+    "when": "textCompareEditorActive"
+  },
+  {
+    "key": "alt+f5",
+    "command": "-workbench.action.compareEditor.nextChange",
+    "when": "textCompareEditorActive"
+  },
+  {
+    "key": "[ h",
+    "command": "workbench.action.compareEditor.previousChange",
+    "when": "textCompareEditorActive"
+  },
+  {
+    "key": "shift+alt+f5",
+    "command": "-workbench.action.compareEditor.previousChange",
+    "when": "textCompareEditorActive"
+  },
+  {
+    "key": "] ]",
+    "command": "workbench.action.compareEditor.focusPrimarySide",
+    "when": "textCompareEditorActive && editorTextFocus"
+  },
+  {
+    "key": "[ [",
+    "command": "workbench.action.compareEditor.focusSecondarySide",
+    "when": "textCompareEditorActive && editorTextFocus"
+  },
+  {
+    "key": "ctrl+a a",
+    "command": "editor.action.selectAll"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "-editor.action.selectAll"
+  },
+  {
+    "key": "ctrl+]",
+    "command": "-editor.action.indentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "-editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "search.focus.nextInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "-search.focus.nextInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.focus.previousInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "-search.focus.previousInputBox",
+    "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "gitlens.openWorkingFile",
+    "when": "inDiffEditor"
+  },
+  {
+    "key": "ctrl+a m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.terminal.resizePaneRight",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+right",
+    "command": "-workbench.action.terminal.resizePaneRight",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.terminal.resizePaneLeft",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+shift+left",
+    "command": "-workbench.action.terminal.resizePaneLeft",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+g a",
+    "command": "git.stage",
+    "when": "!operationInProgress"
+  },
+  {
+    "key": "ctrl+g u",
+    "command": "git.unstage",
+    "when": "!operationInProgress"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "extension.vim_ctrl+w",
+    "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl && vim.mode == 'Insert'"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-extension.vim_ctrl+w",
+    "when": "editorTextFocus && vim.active && vim.use<C-w> && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.files.action.focusOpenEditorsView",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "key": "ctrl+k e",
+    "command": "-workbench.files.action.focusOpenEditorsView",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.explorer.fileView.focus"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "-workbench.action.files.openFile",
+    "when": "true"
+  },
+  {
+    "key": "ctrl+a ctrl+m",
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
+  },
+  {
+    "key": "ctrl+k ctrl+m",
+    "command": "-workbench.action.toggleMaximizeEditorGroup",
+    "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
   }
 ]
