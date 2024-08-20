@@ -58,14 +58,19 @@ return {
     "ellisonleao/gruvbox.nvim",
     opts = {
       contrast = "hard",
+      dim_inactive = false,
+      transparent_mode = true,
+      -- overrides = {
+      --   SignColumn = {bg = "#ff9900"}
+      -- }
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "tokyonight-night",
-      -- colorscheme = "gruvbox",
-      colorscheme = "solarized-osaka",
+      colorscheme = "gruvbox",
+      -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",
     },
   },

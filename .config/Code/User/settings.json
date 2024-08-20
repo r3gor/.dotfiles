@@ -186,7 +186,6 @@
   "apc.font.family": "CaskaydiaMono Nerd Font",
   "workbench.activityBar.location": "hidden",
   "settingsSync.keybindingsPerPlatform": false,
-  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
   "apc.stylesheet": {
     ".quick-input-widget": "width: 100% !important; left: 300px"
   },
@@ -206,5 +205,6 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.tree.enableStickyScroll": false
+  "workbench.tree.enableStickyScroll": false,
+  "workbench.colorTheme": "GitHub Dark Colorblind (Beta)"
 }

@@ -93,6 +93,9 @@ return {
         },
       },
       filesystem = {
+        root_config = {
+          use_git = 0,
+        },
         filtered_items = {
           -- visible = true,
           -- hide_dotfiles = false,
@@ -105,7 +108,7 @@ return {
         },
       },
     },
-    enabled = true,
+    enabled = false,
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -175,7 +178,7 @@ return {
 
       require("nvim-tree").setup(opts)
     end,
-    enabled = false,
+    enabled = true,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -252,6 +255,25 @@ return {
         ---@type string?
         follow_tw = nil,
       },
+    },
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>G", "<cmd>LazyGit<cr>", desc = "Open lazy git" },
     },
   },
 }

@@ -23,3 +23,23 @@ vim.o.list = false
 if os.getenv("WSL_DISTRO_NAME") then
   print("RUNNING ON WSL")
 end
+
+if vim.fn.has("nvim") == 1 and vim.fn.executable("nvr") == 1 then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
+
+-- let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+-- let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
+
+vim.g.lazygit_floating_window_scaling_factor = 1 -- scaling factor for floating window
+vim.g.lazygit_floating_window_winblend = 1 -- transparency of floating window
+
+-- local node_18 = "/home/rogrp/.nvm/versions/node/v18.19.0/bin"
+-- local updated_path = node_18 .. ":" .. os.getenv("PATH")
+-- print(updated_path)
+-- os.execute("export PATH=" .. updated_path)
+-- print(os.getenv("PATH", updated_path))
+--
+
+-- vim.g.node_host_prog = "~/.nvm/versions/node/v18.19.0/lib/node_modules"
+-- vim.g.copilot_node_command = "~/.nvm/versions/node/v18.19.0/bin/node"

@@ -292,4 +292,8 @@ return {
     "uga-rosa/ccc.nvim",
     config = true,
   },
+  -- {
+  --   "sunjon/shade.nvim", // have a bug when terminal resizes
+  --   config = true,
+  -- }
 }
