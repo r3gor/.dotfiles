@@ -35,6 +35,7 @@ return {
       render = "wrapped-compact",
       stages = "fade_in_slide_out",
       top_down = false,
+      background_colour = "#000000",
     },
   },
   {
