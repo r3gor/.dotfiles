@@ -20,14 +20,14 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # ================== [added by rogrp] ========================
@@ -54,13 +54,13 @@ export stk=~/Personal/Softtek
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/rogrp/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/home/rogrp/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/rogrp/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/rogrp/anaconda3/bin:$PATH"
-    fi
+  if [ -f "/home/rogrp/anaconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/rogrp/anaconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/rogrp/anaconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -74,25 +74,26 @@ bindkey "^[[1;5D" backward-word
 
 alias meld="flatpak run org.gnome.meld"
 
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+# [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+# [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 
 IS_WSL=$(~/bin/iswsl.sh)
 
 if [ "$IS_WSL" -eq 1 ]; then
-    export BROWSER=/usr/bin/wslview
+  export BROWSER=/usr/bin/wslview
 fi
 
 
 alias nvim="PATH='~/.nvm/versions/node/v18.19.0/bin:$PATH' /usr/local/bin/nvim"
 
+ZVM_INIT_MODE=sourcing # fix other key-bindings (fzf for example) without it, fzf completion not working (foobar/**)
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+  print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The clone has failed.%f%b"
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
@@ -102,10 +103,10 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+  zdharma-continuum/zinit-annex-as-monitor \
+  zdharma-continuum/zinit-annex-bin-gem-node \
+  zdharma-continuum/zinit-annex-patch-dl \
+  zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
 #
@@ -114,22 +115,19 @@ zinit light-mode for \
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
 # zinit light kutsan/zsh-system-clipboard
 
 # fix yank
 # https://github.com/jeffreytse/zsh-vi-mode/issues/19
 zvm_vi_yank () {
-	zvm_yank
-	printf %s "${CUTBUFFER}" | xclip -sel c
-	zvm_exit_visual_mode
+  zvm_yank
+  printf %s "${CUTBUFFER}" | xclip -sel c
+  zvm_exit_visual_mode
 }
 
 export ZVM_VI_EDITOR=nvim
 export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
-
-
-# FZF
-FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 
 # if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 #     alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
@@ -142,3 +140,52 @@ FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 #     export VISUAL="nvim"
 #     export EDITOR="nvim"
 # fi
+
+
+
+# FZF
+FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_CTRL_T_OPTS="
+--walker-skip .git,node_modules,target
+--preview 'batcat -n --color=always {}'
+--bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_ALT_C_OPTS="
+--walker-skip .git,node_modules,target
+--preview 'tree -C {}'"
+
+# fzf command
+xcd() {
+  WORKDIR="${HOME}/xtrimac"
+  local folders=$(find $WORKDIR/dev $WORKDIR/dev/be -maxdepth 1 -mindepth 1 -type d)
+  local folder_names=$(echo "$folders" | xargs -n 1 basename)
+  local selected_name=$(echo "$folder_names" | fzf --height 40% --border --ansi --prompt="Select a folder: ")
+
+  if [ -n "$selected_name" ]; then
+    local selected_folder=$(echo "$folders" | grep "/$selected_name\$")
+    cd "$selected_folder"
+  else
+    echo "No folder selected."
+  fi
+}
+
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+
+# TODO: IMPROVE ORGANIZATION OF THIS SCRIPT !!!!
