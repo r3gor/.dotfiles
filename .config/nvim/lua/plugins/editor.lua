@@ -213,14 +213,46 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        layout_config = {
-          width = { padding = 0 },
-          -- vertical = { width = 0.5 }
+    config = function()
+      local action_state = require("telescope.actions.state")
+
+      local focus_preview = function(prompt_bufnr)
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local prompt_win = picker.prompt_win
+        local previewer = picker.previewer
+        local winid = previewer.state.winid
+        local bufnr = previewer.state.bufnr
+        vim.keymap.set("n", "<Tab>", function()
+          vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", prompt_win))
+        end, { buffer = bufnr })
+        vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
+        -- api.nvim_set_current_win(winid)
+      end
+
+      require("telescope").setup({
+        defaults = {
+          layout_strategy = "bottom_pane",
+          border = true,
+          layout_config = {
+            width = vim.o.columns,
+            prompt_position = "bottom",
+          },
+          borderchars = {
+            prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          },
+          -- prompt_title = "",
+          -- results_title = "",
+          -- preview_title = "",
+          mappings = {
+            i = {
+              ["<Tab>"] = focus_preview,
+            },
+          },
         },
-      },
-    },
+      })
+    end,
     keys = {
       {
         "<leader>ff",
@@ -234,6 +266,10 @@ return {
         desc = "Find All Files (root dir)",
       },
     },
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    config = true,
   },
   {
     "Bekaboo/deadcolumn.nvim",

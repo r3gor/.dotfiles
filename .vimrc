@@ -25,6 +25,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'img-paste-devs/img-paste.vim'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 
 if has('gui_running')
 	Plug 'drmikehenry/vim-fontsize'
@@ -71,6 +73,15 @@ nnoremap <C-S-h> :vertical resize -5<CR>
 
 " sessions
 nnoremap <leader>qs :source ./Session.vim<CR>
+
+" img paste
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
+
+" markdown preview
+let g:instant_markdown_theme = 'dark'
 
 " exit
 nnoremap <leader>qq :qa<CR>

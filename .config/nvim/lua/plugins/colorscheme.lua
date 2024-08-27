@@ -66,10 +66,19 @@ return {
     },
   },
   {
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        transparent = true,
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
+      colorscheme = "nightfox",
       -- colorscheme = "tokyonight-night",
-      colorscheme = "gruvbox",
+      -- colorscheme = "gruvbox",
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",
     },

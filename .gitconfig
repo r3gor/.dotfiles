@@ -29,6 +29,7 @@
   dog = log --all --decorate --oneline --graph
   pullh = !git pull origin \"$(git rev-parse --abbrev-ref HEAD)\"
   pushh = !git push origin \"$(git rev-parse --abbrev-ref HEAD)\"
+	commitdate = !git commit -m \"$(date -u +%b\\ %d\\ %Y)\"
 [difftool "meld"]
 	cmd = flatpak run org.gnome.meld \"$LOCAL\" \"$REMOTE\"
 [mergetool "meld"]

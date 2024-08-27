@@ -19,8 +19,12 @@ function! OpenWithCorrectDirectory()
 	endif
 endfunction
 
+
 " Llama a la función al iniciar GVim
 autocmd VimEnter * call OpenWithCorrectDirectory()
+
+" fix gx command for opening urls in browser
+let g:netrw_browsex_viewer="setsid xdg-open"
 
 set guioptions-=m " hide menu bar
 set guioptions-=T " hide options bar
