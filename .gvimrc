@@ -28,6 +28,7 @@ let g:netrw_browsex_viewer="setsid xdg-open"
 
 set guioptions-=m " hide menu bar
 set guioptions-=T " hide options bar
+set guioptions= "hide all ui including scrollbars"
 set guifont=MartianMono\ Nerd\ Font\ Mono\ 10
 
 "toggle menu bar

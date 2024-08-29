@@ -20,6 +20,7 @@ vim.o.exrc = true
 vim.o.list = false
 
 vim.o.signcolumn = "no"
+vim.opt.fillchars:append({ eob = '~' })
 
 -- WSL nvim options
 if os.getenv("WSL_DISTRO_NAME") then

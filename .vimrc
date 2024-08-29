@@ -1,4 +1,5 @@
-set relativenumber
+set number " linea actual absoluta
+set relativenumber " demas lineas relativas
 set clipboard=unnamedplus,autoselect " Use + register (X Window clipboard) as unnamed register
 " set paste               " Paste from a windows or from vim
 set autoindent
@@ -27,6 +28,10 @@ Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 Plug 'img-paste-devs/img-paste.vim'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-vinegar'
 
 if has('gui_running')
 	Plug 'drmikehenry/vim-fontsize'
@@ -48,6 +53,8 @@ endif
 " colo slate
 let g:seoul256_background = 233 " Range:   233 (darkest) ~ 239 (lightest)
 colo seoul256
+highlight StatusLine ctermfg=18 ctermbg=white guifg=#003366 guibg=#ffffff
+" highlight StatusLineNC ctermfg=gray ctermbg=darkgray guifg=#808080 guibg=#303030
 
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
@@ -82,6 +89,9 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 
 " markdown preview
 let g:instant_markdown_theme = 'dark'
+let g:instant_markdown_autostart = 0
+nnoremap <leader>mo :InstantMarkdownPreview<CR>
+nnoremap <leader>mc :InstantMarkdownStop<CR>
 
 " exit
 nnoremap <leader>qq :qa<CR>
@@ -127,6 +137,12 @@ endfunction
 " vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" vim gitgutter
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" explorer
+nnoremap <leader>e :Lexplore<CR>

@@ -70,6 +70,16 @@ return {
     opts = {
       options = {
         transparent = true,
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          types = "italic,bold",
+        },
+      },
+      groups = {
+        nightfox = {
+          EndOfBuffer = { fg = "#3e4a5b" },
+        },
       },
     },
   },

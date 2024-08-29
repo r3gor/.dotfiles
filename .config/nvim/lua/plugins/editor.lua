@@ -117,7 +117,8 @@ return {
       view = {
         cursorline = true,
         width = 30,
-        relativenumber = true,
+        relativenumber = false,
+        signcolumn = "no",
       },
       renderer = {
         indent_width = 1,

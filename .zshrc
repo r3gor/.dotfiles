@@ -47,6 +47,33 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# ==== NVM auto load .nvmrc ====
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+# ==== NVM auto load .nvmrc ====
+
 export gdp=~/Personal/GDP
 export stk=~/Personal/Softtek
 
@@ -144,31 +171,110 @@ export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 
 
 # FZF
-FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export FZF_CTRL_T_OPTS="
 --walker-skip .git,node_modules,target
 --preview 'batcat -n --color=always {}'
---bind 'ctrl-/:change-preview-window(down|hidden|)'"
+--bind 'ctrl-/:change-preview-window(down|hidden|)'
+"
+
+export FZF_ALT_C_COMMAND="fdfind \
+--type directory \
+--type symlink \
+--follow \
+--hidden \
+--exclude node_modules \
+--exclude .git \
+--exclude .idea \
+--exclude .node-gyp \
+--exclude 'go/pkg/**' \
+--exclude 'go/bin/**' \
+--exclude 'snap/**' \
+--exclude 'anaconda3/**' \
+--exclude '.vscode/**' \
+--exclude '.cache/**' \
+--exclude '.npm/**' \
+--exclude '.gitkraken/**' \
+--exclude '.config/google-chrome/**' \
+--exclude '.config/JetBrains/**' \
+"
+
 export FZF_ALT_C_OPTS="
+--walker file,follow,hidden
 --walker-skip .git,node_modules,target
---preview 'tree -C {}'"
+--preview 'tree -C {}'
+"
 
 # fzf command
-xcd() {
+function xcd_v0=() {
   WORKDIR="${HOME}/xtrimac"
+  # Encuentra todas las carpetas y crea la lista de rutas completas
   local folders=$(find $WORKDIR/dev $WORKDIR/dev/be -maxdepth 1 -mindepth 1 -type d)
-  local folder_names=$(echo "$folders" | xargs -n 1 basename)
-  local selected_name=$(echo "$folder_names" | fzf --height 40% --border --ansi --prompt="Select a folder: ")
 
-  if [ -n "$selected_name" ]; then
-    local selected_folder=$(echo "$folders" | grep "/$selected_name\$")
-    cd "$selected_folder"
+  # Genera una lista de rutas con su porción única
+  local unique_folders=$(echo "$folders" | awk -F'/' '{
+    count[$NF]++;
+    paths[$NF"/"$0]=$0;
+  } END {
+    for (path in paths) {
+      split(path, arr, "/");
+      if (count[arr[1]] > 1) {
+        print paths[path];
+      } else {
+        print substr(paths[path], index(paths[path], arr[1]));
+      }
+    }
+  }' | sed "s|^$WORKDIR/||" | sort -u)
+
+  # Selecciona la carpeta a partir de la lista procesada
+  local selected_folder=$(echo "$unique_folders" | fzf --height 40% --border --ansi --prompt="Select a folder: ")
+
+  # Si se selecciona una carpeta, cambiar a la ruta completa correspondiente
+  if [ -n "$selected_folder" ]; then
+    cd "$WORKDIR/$selected_folder"
   else
     echo "No folder selected."
   fi
 }
 
+function xcd() {
+  WORKDIR="${HOME}/xtrimac"
+  # Encuentra todas las carpetas y crea la lista de rutas completas
+  local folders=$(find $WORKDIR/dev $WORKDIR/dev/be -maxdepth 1 -mindepth 1 -type d)
+
+  # Genera una lista de rutas mostrando todo menos el WORKDIR
+  local unique_folders=$(echo "$folders" | awk -v workdir="$WORKDIR" -F'/' '{
+    sub(workdir "/", "", $0);
+    count[$NF]++;
+    paths[$0]=$0;
+  } END {
+    for (path in paths) {
+      split(path, arr, "/");
+      if (count[arr[1]] > 1) {
+        print paths[path];
+      } else {
+        print path;
+      }
+    }
+  }' | sort -u)
+
+  # Selecciona la carpeta a partir de la lista procesada
+  local selected_folder=$(echo "$unique_folders" | fzf --height 40% --border --ansi --prompt="Select a folder: ")
+
+  # Si se selecciona una carpeta, cambiar a la ruta completa correspondiente
+  if [ -n "$selected_folder" ]; then
+    cd "$WORKDIR/$selected_folder"
+  else
+    echo "No folder selected."
+  fi
+}
+
+
+function cd_home_fzf {
+  cd "$(rg --type d --hidden --follow --glob '!.git/*' ~ 2> /dev/null | fzf)"
+}
+bindkey -s '^[d' 'cd_home_fzf\n'
 
 # History
 HISTSIZE=5000
@@ -187,5 +293,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+
+
+
 
 # TODO: IMPROVE ORGANIZATION OF THIS SCRIPT !!!!

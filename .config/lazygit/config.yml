@@ -1,0 +1,13 @@
+os:
+  editPreset: "nvim-remote"
+  edit: 'nvr --remote-send ''<C-space>:q<CR><Esc>:lua vim.cmd("e " .. {{filename}})<CR>'''
+  editAtLine: 'nvr --remote-send ''<C-space>:q<CR><Esc>:lua vim.cmd("e " .. {{filename}})<CR>{{line}}G'''
+
+gui:
+  theme:
+    selectedLineBgColor: 
+      - reverse # Cambia esto a otro valor como "default" o un color específico
+keybinding:
+  universal:
+    quit: <C-c> 
+    return: <esc>
