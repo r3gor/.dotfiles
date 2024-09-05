@@ -207,6 +207,7 @@ export FZF_ALT_C_OPTS="
 "
 
 # fzf command
+
 function xcd_v0=() {
   WORKDIR="${HOME}/xtrimac"
   # Encuentra todas las carpetas y crea la lista de rutas completas
@@ -270,11 +271,15 @@ function xcd() {
   fi
 }
 
-
-function cd_home_fzf {
-  cd "$(rg --type d --hidden --follow --glob '!.git/*' ~ 2> /dev/null | fzf)"
+function fzf_cd_from_home() {
+  local FZF_ALT_H_COMMAND="${FZF_ALT_C_COMMAND} . ~"
+  local dir
+  dir=$(eval $FZF_ALT_H_COMMAND | sed "s|^$HOME|~|" | fzf --preview 'tree -C {}')
+  dir="${dir/#\~/$HOME}"
+  cd "$dir"
 }
-bindkey -s '^[d' 'cd_home_fzf\n'
+
+bindkey -s '^[d' 'fzf_cd_from_home\n'
 
 # History
 HISTSIZE=5000

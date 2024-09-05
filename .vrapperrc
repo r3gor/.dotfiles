@@ -1,0 +1,12 @@
+" Docs: https://vrapper.sourceforge.net/documentation/?topic=configuration#config
+
+set ignorecase
+set smartcase
+set incsearch
+set tabstop=4
+set shiftwidth=4
+set nonumber
+
+nnoremap <c-d> <PageDown>
+nnoremap <c-u> <PageUp>
+
