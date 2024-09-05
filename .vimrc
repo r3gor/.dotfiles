@@ -14,6 +14,10 @@ set foldlevel=9999
 
 call plug#begin()
 
+
+let node_path = "/home/rogrp/.nvm/versions/node/v18.19.0/bin"
+let $PATH = node_path . ":" . $PATH
+
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -90,6 +94,7 @@ autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownCli
 " markdown preview
 let g:instant_markdown_theme = 'dark'
 let g:instant_markdown_autostart = 0
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 nnoremap <leader>mo :InstantMarkdownPreview<CR>
 nnoremap <leader>mc :InstantMarkdownStop<CR>
 

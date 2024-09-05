@@ -210,11 +210,11 @@ export FZF_ALT_C_OPTS="
 export LS_COLORS="ln=01;30;43" # Esto cambiará los enlaces simbólicos a un color cian.
 
 # fzf command
-function wcd() {
-  WORKDIR="${HOME}/extrimac/"
-  local folders=$(find $WORKDIR/fe $WORKDIR/be -maxdepth 1 -mindepth 1 -type d)
-  local folder_names=$(echo "$folders" | xargs -n 1 basename)
-  local selected_name=$(echo "$folder_names" | fzf --height 40% --border --ansi --prompt="Select a folder: ")
+
+function xcd_v0=() {
+  WORKDIR="${HOME}/xtrimac"
+  # Encuentra todas las carpetas y crea la lista de rutas completas
+  local folders=$(find $WORKDIR/dev $WORKDIR/dev/be -maxdepth 1 -mindepth 1 -type d)
 
   # Genera una lista de rutas con su porción única
   local unique_folders=$(echo "$folders" | awk -F'/' '{
@@ -274,11 +274,15 @@ function xcd() {
   fi
 }
 
-
-function cd_home_fzf {
-  cd "$(rg --type d --hidden --follow --glob '!.git/*' ~ 2> /dev/null | fzf)"
+function fzf_cd_from_home() {
+  local FZF_ALT_H_COMMAND="${FZF_ALT_C_COMMAND} . ~"
+  local dir
+  dir=$(eval $FZF_ALT_H_COMMAND | sed "s|^$HOME|~|" | fzf --preview 'tree -C {}')
+  dir="${dir/#\~/$HOME}"
+  cd "$dir"
 }
-bindkey -s '^[d' 'cd_home_fzf\n'
+
+bindkey -s '^[d' 'fzf_cd_from_home\n'
 
 # History
 HISTSIZE=5000
