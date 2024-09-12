@@ -48,3 +48,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>", { noremap = true, silent = true })
   end,
 })
+
+-- disable spell check lazyvim
+vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")

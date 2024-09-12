@@ -7,6 +7,7 @@ vim.o.foldcolumn = "0"
 vim.o.foldlevel = 9999 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 9999
 vim.o.foldenable = true
+vim.o.spell = false
 
 -- wrap enabled by default
 vim.opt.wrap = true
@@ -46,3 +47,6 @@ vim.g.lazygit_floating_window_winblend = 1 -- transparency of floating window
 
 -- vim.g.node_host_prog = "~/.nvm/versions/node/v18.19.0/lib/node_modules"
 -- vim.g.copilot_node_command = "~/.nvm/versions/node/v18.19.0/bin/node"
+
+vim.o.showtabline = 1
+vim.o.laststatus = 3
