@@ -281,6 +281,8 @@ function fzf_cd_from_home() {
 
 bindkey -s '^[d' 'fzf_cd_from_home\n'
 
+alias gcb='git checkout $(git branch --all | grep -v "\->" | grep -v "^\*" | sed "s/ *remotes\/origin\///" | sort -u | fzf --height 10% --border --prompt "Selecciona una rama> ")'
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history

@@ -22,8 +22,8 @@ return {
     lazy = true,
     priority = 1000,
     opts = {
-      style = "day",
-      transparent = false,
+      style = "moon",
+      transparent = true,
       on_colors = function(colors)
         colors.border = "#737aa2"
         colors.bg_visual = "#123456"
@@ -60,9 +60,11 @@ return {
       contrast = "hard",
       dim_inactive = false,
       transparent_mode = true,
-      -- overrides = {
-      --   SignColumn = {bg = "#ff9900"}
-      -- }
+      overrides = {
+        -- SignColumn = {bg = "#ff9900"},
+        -- WinSeparator = { fg = "#3e4a5b", bg = "#282c34" },
+        WinSeparator = { fg = "#282c34", bg = "#282c34" },
+      },
     },
   },
   {
@@ -79,6 +81,8 @@ return {
       groups = {
         nightfox = {
           EndOfBuffer = { fg = "#3e4a5b" },
+          -- WinSeparator = { fg = "#3e4a5b", bg = "#282c34" },
+          WinSeparator = { fg = "#282c34", bg = "#282c34" },
         },
       },
     },
@@ -88,6 +92,7 @@ return {
     opts = {
       colorscheme = "nightfox",
       -- colorscheme = "tokyonight-night",
+      -- colorscheme = "tokyonight",
       -- colorscheme = "gruvbox",
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",

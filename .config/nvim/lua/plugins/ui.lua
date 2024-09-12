@@ -67,25 +67,81 @@ return {
     event = "BufReadPre",
     priority = 1200,
     opts = {
+      -- highlight = {
+      --   groups = {
+      --     InclineNormal = { guibg = "#a5a02a", guifg = "#1a1a1a" },
+      --     InclineNormalNC = { guifg = "#5B6E74", guibg = "#1A1B26" },
+      --   },
+      -- },
+      -- window = { margin = { vertical = 0, horizontal = 1 } },
+      -- hide = {
+      --   cursorline = true,
+      -- },
+      -- render = function(props)
+      --   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+      --   if vim.bo[props.buf].modified then
+      --     filename = "[+] " .. filename
+      --   end
+      --
+      --   -- local icon, color = require("nvim-web-devicons").get_icon_color(filename)
+      --   -- return { { icon, guifg = color }, { " " }, { filename } }
+      --   return { {}, { " " }, { filename } }
+      -- end,
+
+      -- Version 2
+      window = {
+        padding = 0,
+        margin = {
+          horizontal = 0,
+          vertical = 0,
+        },
+        placement = {
+          -- vertical = "top",
+          -- horizontal = "right",
+          vertical = "bottom",
+          horizontal = "left",
+        },
+        width = "fill",
+      },
       highlight = {
         groups = {
-          InclineNormal = { guibg = "#a5a02a", guifg = "#1a1a1a" },
-          InclineNormalNC = { guifg = "#5B6E74", guibg = "#1A1B26" },
+          InclineNormal = {
+            -- guifg = "#1e222a", -- Color de texto activo
+            -- guibg = "#5f87af", -- Color de fondo activo
+            -- guifg = "#bbc2cf", -- Color de texto inactivo
+            guifg = "#fff", -- Color de texto inactivo
+            guibg = "#282c34", -- Color de fondo inactivo
+            gui = "bold",
+          },
+          InclineNormalNC = {
+            guifg = "#5c6370", -- Color de texto inactivo
+            guibg = "#282c34", -- Color de fondo inactivo
+          },
         },
       },
-      window = { margin = { vertical = 0, horizontal = 1 } },
-      hide = {
-        cursorline = true,
-      },
       render = function(props)
+        local devicons = require("nvim-web-devicons")
+        local helpers = require("incline.helpers")
+
+        local full_path = vim.api.nvim_buf_get_name(props.buf)
+        local relative_path = vim.fn.fnamemodify(full_path, ":.")
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-        if vim.bo[props.buf].modified then
-          filename = "[+] " .. filename
+        if filename == "" then
+          filename = "[No Name]"
         end
 
-        -- local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-        -- return { { icon, guifg = color }, { " " }, { filename } }
-        return { {}, { " " }, { filename } }
+        if vim.bo[props.buf].modified then
+          relative_path = "[+] " .. relative_path
+        end
+        local ft_icon, ft_color = devicons.get_icon_color(filename)
+        local modified = vim.bo[props.buf].modified
+        return {
+          -- ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
+          ft_icon and { " ", ft_icon, " " } or "",
+          " ",
+          { relative_path, gui = modified and "italic" or "" },
+          " ",
+        }
       end,
     },
   },
@@ -191,6 +247,8 @@ return {
           theme = "auto",
           globalstatus = vim.o.laststatus == 3,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
+          -- component_separators = { left = "|", right = "|" },
+          -- section_separators = { left = "", right = "" },
         },
         sections = {
           lualine_a = { "mode" },
@@ -198,17 +256,18 @@ return {
 
           lualine_c = {
             LazyVim.lualine.root_dir(),
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostics.Error,
-                warn = icons.diagnostics.Warn,
-                info = icons.diagnostics.Info,
-                hint = icons.diagnostics.Hint,
-              },
-            },
+            -- {
+            --   "diagnostics",
+            --   symbols = {
+            --     error = icons.diagnostics.Error,
+            --     warn = icons.diagnostics.Warn,
+            --     info = icons.diagnostics.Info,
+            --     hint = icons.diagnostics.Hint,
+            --   },
+            -- },
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { LazyVim.lualine.pretty_path() },
+            -- { LazyVim.lualine.pretty_path() },
+            -- { "filename", path = 1 },
           },
           lualine_x = {
         -- stylua: ignore
@@ -266,6 +325,19 @@ return {
           },
         },
         extensions = { "neo-tree", "lazy" },
+        -- winbar = {
+        --   lualine_a = {
+        --     { "filename", path = 1 },
+        --   },
+        -- },
+        -- tabline = {
+        --   lualine_c = {},
+        --   lualine_x = {
+        --     { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+        --     { "filename", path = 1 },
+        --   },
+        --   lualine_z = { { "tabs" }, },
+        -- },
       }
 
       -- do not add trouble symbols if aerial is enabled
