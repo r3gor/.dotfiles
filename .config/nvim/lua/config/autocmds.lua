@@ -8,11 +8,18 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
--- Fix conceallevel for markdown
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
-  -- command = "setlocal conceallevel=0",
-  command = "setlocal conceallevel=2", -- for obsidian.nvim
+  callback = function()
+    -- Configura conceallevel según tus necesidades
+    -- vim.cmd("setlocal conceallevel=0")
+    -- vim.cmd("setlocal conceallevel=2") -- para obsidian.nvim
+
+    -- Configuración para el método de plegado usando Treesitter
+    require("ufo").detach()
+    vim.cmd("setlocal foldexpr=nvim_treesitter#foldexpr()")
+    vim.cmd("setlocal foldmethod=expr")
+  end,
 })
 
 -- NvimTree auto close
@@ -51,3 +58,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- disable spell check lazyvim
 vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- -- Función para agregar líneas vacías al final del buffer
+-- local function add_empty_lines_at_eob()
+--   local line_count = vim.api.nvim_buf_line_count(0) -- Cuenta las líneas actuales
+--   local target_line_count = line_count + 2 -- Cambia el número 2 a cuantas líneas extras quieras
+--
+--   -- Agrega líneas vacías si el número de líneas es menor que el objetivo
+--   if vim.api.nvim_buf_get_lines(0, line_count - 1, line_count, false)[1] ~= "" then
+--     vim.api.nvim_buf_set_lines(0, line_count, line_count, false, { "", "" })
+--   end
+-- end
+--
+-- -- Comando autocomando para agregar líneas vacías al abrir buffers
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   callback = add_empty_lines_at_eob,
+-- })

@@ -1,5 +1,4 @@
 return {
-  { "lukas-reineke/indent-blankline.nvim", enabled = true },
   {
     "akinsho/bufferline.nvim",
     enabled = false,
@@ -42,7 +41,24 @@ return {
     "folke/noice.nvim",
     opts = {
       cmdline = {
+        enabled = true,
         view = "cmdline",
+        ---@type table<string, CmdlineFormat>
+        format = {
+          -- cmdline = { pattern = "^:", icon = "", lang = "vim", conceal = false },
+          cmdline = { pattern = "^:", icon = "❯", lang = "vim", conceal = false },
+          search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex", conceal = false },
+          search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex", conceal = false },
+          filter = { pattern = "^:%s*!", icon = "$", lang = "bash", conceal = false },
+          lua = {
+            pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" },
+            icon = "",
+            lang = "lua",
+            conceal = false,
+          },
+          help = { pattern = "^:%s*he?l?p?%s+", icon = "", conceal = false },
+          input = { view = "cmdline_input", icon = "󰥻 ", conceal = false }, -- Used by input()
+        },
       },
       popupmenu = {
         enabled = true,
@@ -74,9 +90,9 @@ return {
       --   },
       -- },
       -- window = { margin = { vertical = 0, horizontal = 1 } },
-      -- hide = {
-      --   cursorline = true,
-      -- },
+      hide = {
+        cursorline = true,
+      },
       -- render = function(props)
       --   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
       --   if vim.bo[props.buf].modified then
@@ -99,7 +115,7 @@ return {
           -- vertical = "top",
           -- horizontal = "right",
           vertical = "bottom",
-          horizontal = "left",
+          horizontal = "right",
         },
         width = "fill",
       },
@@ -228,8 +244,18 @@ return {
     "karb94/neoscroll.nvim",
     opts = {
       easing_function = "quadratic",
+      -- stop_eof = false,
+      -- respect_scrolloff = true,
     },
     config = true,
+  },
+  {
+    "Aasim-A/scrollEOF.nvim",
+    event = { "CursorMoved", "WinScrolled" },
+    opts = {
+      insert_mode = true,
+      floating = false,
+    },
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -245,7 +271,8 @@ return {
       local opts = {
         options = {
           theme = "auto",
-          globalstatus = vim.o.laststatus == 3,
+          -- globalstatus = vim.o.laststatus == 3,
+          globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
           -- component_separators = { left = "|", right = "|" },
           -- section_separators = { left = "", right = "" },
@@ -368,5 +395,81 @@ return {
   {
     "folke/edgy.nvim",
     enabled = false,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+    opts = function()
+      local tsc = require("treesitter-context")
+
+      LazyVim.toggle.map("<leader>ut", {
+        name = "Treesitter Context",
+        get = tsc.enabled,
+        set = function(state)
+          if state then
+            tsc.enable()
+          else
+            tsc.disable()
+          end
+        end,
+      })
+
+      return {
+        mode = "topline",
+        separator = "-",
+        trim_scope = "inner",
+        max_lines = 3,
+      }
+    end,
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = true,
+    config = function()
+      local highlight = {
+        "RainbowOrange",
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
+      }
+
+      local hooks = require("ibl.hooks")
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      require("ibl").setup({
+        scope = {
+          highlight = highlight,
+          show_exact_scope = false,
+        },
+        indent = {
+          smart_indent_cap = true,
+        },
+      })
+    end,
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    enabled = false,
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup({
+        chunk = {
+          enable = true,
+        },
+      })
+    end,
   },
 }

@@ -11,6 +11,19 @@ set mouse=a
 set whichwrap+=<,>,[,] " right move in the first char of non first line move to end of previous line
 set foldmethod=syntax
 set foldlevel=9999
+set conceallevel=2
+set ignorecase
+set smartcase
+
+ 
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
 
 call plug#begin()
 
@@ -18,7 +31,6 @@ call plug#begin()
 let node_path = "/home/rogrp/.nvm/versions/node/v18.19.0/bin"
 let $PATH = node_path . ":" . $PATH
 
-" List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -36,6 +48,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-vinegar'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 
 if has('gui_running')
 	Plug 'drmikehenry/vim-fontsize'
@@ -151,3 +164,8 @@ nmap [h <Plug>(GitGutterPrevHunk)
 
 " explorer
 nnoremap <leader>e :Lexplore<CR>
+
+" vim-ctrl-space
+set nocompatible
+set hidden
+set encoding=utf-8

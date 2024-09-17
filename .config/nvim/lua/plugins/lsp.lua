@@ -32,17 +32,31 @@ local function rename_file()
 end
 
 return {
-  "neovim/nvim-lspconfig",
-  -- @class PluginLspOpts
-  setup = function()
-    require("lspconfig").tsserver.setup({
-      commands = {
-        RenameFile = {
-          rename_file,
-          description = "Rename File",
+  {
+    "neovim/nvim-lspconfig",
+    -- @class PluginLspOpts
+    setup = function()
+      require("lspconfig").tsserver.setup({
+        commands = {
+          RenameFile = {
+            rename_file,
+            description = "Rename File",
+          },
         },
-      },
-    })
-  end,
-  opts = {},
+      })
+    end,
+    opts = function()
+      if LazyVim.pick.want() ~= "telescope" then
+        return
+      end
+      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- stylua: ignore
+      vim.list_extend(Keys, {
+        { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = false }) end, desc = "Goto Definition", has = "definition" },
+        { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References", nowait = true },
+        { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = false }) end, desc = "Goto Implementation" },
+        { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = false }) end, desc = "Goto T[y]pe Definition" },
+      })
+    end,
+  },
 }
