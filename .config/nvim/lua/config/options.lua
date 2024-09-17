@@ -49,4 +49,7 @@ vim.g.lazygit_floating_window_winblend = 1 -- transparency of floating window
 -- vim.g.copilot_node_command = "~/.nvm/versions/node/v18.19.0/bin/node"
 
 vim.o.showtabline = 1
-vim.o.laststatus = 3
+vim.g.markdown_folding = 1
+
+vim.o.laststatus = 2
+vim.o.scrolloff = 3

@@ -37,6 +37,9 @@ return {
         -- colors.bg = "#000000"
         -- colors.bg_visual = "#0041c2"
       end,
+      on_highlights = function(highlights, colors)
+        highlights.EndOfBuffer = { fg = "#606060" }
+      end,
     },
   },
   {
@@ -71,7 +74,7 @@ return {
     "EdenEast/nightfox.nvim",
     opts = {
       options = {
-        transparent = true,
+        -- transparent = true,
         styles = {
           comments = "italic",
           keywords = "bold",
@@ -89,14 +92,43 @@ return {
     },
   },
   {
+    "projekt0n/github-nvim-theme",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("github-theme").setup({
+        options = {
+          transparent = true,
+          styles = {
+            comments = "italic",
+            keywords = "bold",
+            types = "italic,bold",
+          },
+        },
+        groups = {
+          all = {
+            WinSeparator = { fg = "#303037" },
+            EndOfBuffer = { fg = "#3e4a5b" },
+            TreesitterContextSeparator = { fg = "#4d4d4d" },
+            NoicePopupBorder = { fg = "#4d4d4d" },
+          },
+        },
+      })
+      -- vim.cmd("colorscheme github_dark")
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nightfox",
+      -- colorscheme = "nightfox",
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "tokyonight",
       -- colorscheme = "gruvbox",
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",
+      colorscheme = "github_dark",
+      -- colorscheme = "github_dark_high_contrast",
+      -- colorscheme = "github_dark_default",
     },
   },
 }

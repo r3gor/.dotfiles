@@ -216,6 +216,7 @@ return {
     "nvim-telescope/telescope.nvim",
     config = function()
       local action_state = require("telescope.actions.state")
+      local actions = require("telescope.actions")
 
       local focus_preview = function(prompt_bufnr)
         local picker = action_state.get_current_picker(prompt_bufnr)
@@ -223,7 +224,7 @@ return {
         local previewer = picker.previewer
         local winid = previewer.state.winid
         local bufnr = previewer.state.bufnr
-        vim.keymap.set("n", "<Tab>", function()
+        vim.keymap.set("n", "<S-Tab>", function()
           vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", prompt_win))
         end, { buffer = bufnr })
         vim.cmd(string.format("noautocmd lua vim.api.nvim_set_current_win(%s)", winid))
@@ -248,7 +249,11 @@ return {
           -- preview_title = "",
           mappings = {
             i = {
-              ["<Tab>"] = focus_preview,
+              ["<S-Tab>"] = focus_preview,
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+            },
+            n = {
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
             },
           },
         },
@@ -266,7 +271,26 @@ return {
         end,
         desc = "Find All Files (root dir)",
       },
+      {
+        "<leader>fc",
+        function()
+          require("telescope").extensions.file_browser.file_browser()
+        end,
+      },
+      {
+        "<leader><leader>",
+        function()
+          require("telescope").extensions.file_browser.file_browser({
+            path = "%:p:h",
+            select_buffer = true, -- init telescope with current buffer selected
+          })
+        end,
+      },
     },
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   },
   {
     "petertriho/nvim-scrollbar",
@@ -322,4 +346,7 @@ return {
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
+  -- {
+  --   "dosimple/workspace.vim",
+  -- },
 }
