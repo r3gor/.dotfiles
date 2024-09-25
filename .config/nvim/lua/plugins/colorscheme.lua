@@ -85,7 +85,8 @@ return {
         nightfox = {
           EndOfBuffer = { fg = "#3e4a5b" },
           -- WinSeparator = { fg = "#3e4a5b", bg = "#282c34" },
-          WinSeparator = { fg = "#282c34", bg = "#282c34" },
+          -- WinSeparator = { fg = "#282c34", bg = "#282c34" },
+          WinSeparator = { fg = "#282c34", bg = "" },
         },
       },
     },
