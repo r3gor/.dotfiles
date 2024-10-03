@@ -282,7 +282,8 @@ return {
         function()
           require("telescope").extensions.file_browser.file_browser({
             path = "%:p:h",
-            select_buffer = true, -- init telescope with current buffer selected
+            select_buffer = true, -- init telescope with current
+            -- buffer selected
           })
         end,
       },
@@ -290,7 +291,10 @@ return {
   },
   {
     "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
   },
   {
     "petertriho/nvim-scrollbar",
@@ -298,25 +302,13 @@ return {
   },
   {
     "Bekaboo/deadcolumn.nvim",
-    config = true,
-    opts = {
-      scope = "buffer",
-      blending = {
-        threshold = 0.75,
-        colorcode = "#FFFFFF",
-        hlgroup = { "Normal", "bg" },
-      },
-      warning = {
-        alpha = 0.4,
-        offset = 0,
-        colorcode = "#FF0000",
-        hlgroup = { "Error", "bg" },
-      },
-      extra = {
-        ---@type string?
-        follow_tw = nil,
-      },
-    },
+    config = function()
+      vim.opt.colorcolumn = "100"
+      require("deadcolumn").setup({
+        modes = { "i", "ic", "ix", "R", "Rc", "Rx", "Rv", "Rvc", "Rvx", "n" },
+        scope = "line",
+      })
+    end,
   },
   {
     "kdheepak/lazygit.nvim",
@@ -359,5 +351,8 @@ return {
     keys = {
       { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
-  }
+  },
+  {
+    "junegunn/vim-easy-align",
+  },
 }

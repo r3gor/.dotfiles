@@ -15,6 +15,8 @@ set conceallevel=2
 set ignorecase
 set smartcase
 
+set listchars=tab:▸-,trail:·,eol:↲,space:·
+set list
  
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
@@ -49,6 +51,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-vinegar'
 Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'chrisbra/csv.vim'
 
 if has('gui_running')
 	Plug 'drmikehenry/vim-fontsize'

@@ -25,9 +25,13 @@ return {
     config = function()
       require("render-markdown").setup({
         code = {
-          border = "thick",
+          border = "thin",
+          language_pad = 1,
         },
       })
+
+      vim.api.nvim_command("autocmd FileType markdown highlight RenderMarkdownCode guibg=#000000")
+      vim.api.nvim_command("autocmd FileType markdown highlight RenderMarkdownCodeInline guibg=#000000")
     end,
   },
   {

@@ -22,6 +22,16 @@ vim.o.list = false
 
 vim.o.signcolumn = "no"
 vim.opt.fillchars:append({ eob = "~" })
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = "▸ ", -- Muestra un símbolo seguido de un espacio para tabulaciones
+  trail = "·", -- Muestra un punto para los espacios en blanco al final de la línea
+  extends = ">", -- Muestra un '>' al final de la línea que se extiende más allá del borde
+  precedes = "<", -- Muestra un '<' al comienzo de una línea que se extiende más allá del borde
+  nbsp = "␣", -- Muestra un símbolo especial para los espacios no separables
+  eol = "↲",
+  -- space = ".",
+}
 
 -- WSL nvim options
 if os.getenv("WSL_DISTRO_NAME") then
@@ -53,3 +63,5 @@ vim.g.markdown_folding = 1
 
 vim.o.laststatus = 2
 vim.o.scrolloff = 3
+
+vim.g.lazyvim_prettier_needs_config = false

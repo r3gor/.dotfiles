@@ -62,7 +62,7 @@ return {
     opts = {
       contrast = "hard",
       dim_inactive = false,
-      transparent_mode = true,
+      -- transparent_mode = true,
       overrides = {
         -- SignColumn = {bg = "#ff9900"},
         -- WinSeparator = { fg = "#3e4a5b", bg = "#282c34" },
@@ -118,15 +118,48 @@ return {
     end,
   },
   {
+    "metalelf0/base16-black-metal-scheme",
+    lazy = false,
+  },
+  {
+    "gmr458/cold.nvim",
+    lazy = false,
+  },
+  {
+    "zenbones-theme/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    dependencies = { "rktjmp/lush.nvim" },
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    "aktersnurra/no-clown-fiesta.nvim",
+    lazy = false,
+    config = function()
+      require("cold").setup()
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          vim.cmd([[highlight NonText guifg=#3a3a3c]])
+        end,
+      })
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "nightfox",
       -- colorscheme = "tokyonight-night",
       -- colorscheme = "tokyonight",
       -- colorscheme = "gruvbox",
+      -- colorscheme = "base16-black-metal",
+      -- colorscheme = "cold",
+      colorscheme = "no-clown-fiesta",
+      -- colorscheme = "zenwritten",
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",
-      colorscheme = "github_dark",
+      -- colorscheme = "github_dark",
       -- colorscheme = "github_dark_high_contrast",
       -- colorscheme = "github_dark_default",
     },

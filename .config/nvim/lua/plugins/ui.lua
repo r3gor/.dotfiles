@@ -152,26 +152,25 @@ return {
         local ft_icon, ft_color = devicons.get_icon_color(filename)
         local modified = vim.bo[props.buf].modified
 
-    local function get_diagnostic_label()
-        local icons = { error = ' ', warn = ' ', info = ' ', hint = '󰛨 ' }
-        local label = {}
+        local function get_diagnostic_label()
+          local icons = { error = " ", warn = " ", info = " ", hint = "󰛨 " }
+          local label = {}
 
-        for severity, icon in pairs(icons) do
+          for severity, icon in pairs(icons) do
             local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
             if n > 0 then
-                table.insert(label, { icon .. '' .. n .. ' ', group = 'DiagnosticSign' .. severity })
+              table.insert(label, { icon .. "" .. n .. " ", group = "DiagnosticSign" .. severity })
             end
-        end
-        if #label > 0 then
+          end
+          if #label > 0 then
             -- table.insert(label, 1, { ' ┊ ' })
-            table.insert(label, 1, { ' | ' })
+            table.insert(label, 1, { " | " })
+          end
+          return label
         end
-        return label
-    end
 
-
-    -- Insertar espacios para empujar los diagnósticos al final
-    local padding = string.rep(" ", vim.api.nvim_win_get_width(0) - #relative_path - 20) -- Ajusta el número según el ancho disponible
+        -- Insertar espacios para empujar los diagnósticos al final
+        local padding = string.rep(" ", vim.api.nvim_win_get_width(0) - #relative_path - 20) -- Ajusta el número según el ancho disponible
 
         return {
           ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
@@ -179,8 +178,8 @@ return {
           " ",
           { relative_path, gui = modified and "italic" or "" },
           " ",
-        -- { padding }, -- Añadir padding para empujar los diagnósticos al final
-        unpack(get_diagnostic_label()), -- Diagnósticos al final
+          -- { padding }, -- Añadir padding para empujar los diagnósticos al final
+          unpack(get_diagnostic_label()), -- Diagnósticos al final
         }
       end,
     },
@@ -448,38 +447,36 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
-      local highlight = {
-        "RainbowOrange",
-        "RainbowRed",
-        "RainbowYellow",
-        "RainbowBlue",
-        "RainbowGreen",
-        "RainbowViolet",
-        "RainbowCyan",
-      }
-
-      local hooks = require("ibl.hooks")
-      -- create the highlight groups in the highlight setup hook, so they are reset
-      -- every time the colorscheme changes
-      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-      end)
+      -- local highlight = {
+      --   "RainbowOrange",
+      --   "RainbowRed",
+      --   "RainbowYellow",
+      --   "RainbowBlue",
+      --   "RainbowGreen",
+      --   "RainbowViolet",
+      --   "RainbowCyan",
+      -- }
+      --
+      -- local hooks = require("ibl.hooks")
+      -- -- create the highlight groups in the highlight setup hook, so they are reset
+      -- -- every time the colorscheme changes
+      -- hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+      --   vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+      --   vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+      --   vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+      --   vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+      --   vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+      --   vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+      --   vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      -- end)
 
       require("ibl").setup({
         scope = {
-          highlight = highlight,
+          priority = 9999,
+          highlight = { "Function", "Label" },
           show_exact_scope = false,
-        },
-        indent = {
-          smart_indent_cap = true,
         },
       })
     end,

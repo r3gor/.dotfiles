@@ -31,3 +31,6 @@ keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 vim.keymap.set("x", "p", function()
   return 'pgv"' .. vim.v.register .. "y"
 end, { remap = false, expr = true })
+
+keymap.set({ "n", "v" }, "<M-l>", "4zl", opts)
+keymap.set({ "n", "v" }, "<M-h>", "4zh", opts)
