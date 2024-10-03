@@ -1,0 +1,41 @@
+# Archivos de backup y autosave de Emacs
+*~
+\#*\#
+.\#*
+
+# Directorio de datos de Emacs
+auto-save-list/
+tramp/
+url/
+eln-cache/
+
+# Directorio de cache de paquetes
+elpa/
+straight/
+var/
+lisp/
+eshell/
+
+# Archivos de sesión y configuración temporal
+.emacs.desktop
+.emacs.desktop.lock
+.session
+.emacs-custom.el
+
+# Archivos relacionados con compilación de Emacs Lisp
+*.elc
+*.eln
+
+# Archivos relacionados con proyectos y dependencias
+.projectile
+.cask
+dist/
+
+# Archivo de lock de paquete use-package
+package-locks/
+
+# Archivos de seguridad de org-mode
+.org-id-locations
+
+tabsession.el
+
