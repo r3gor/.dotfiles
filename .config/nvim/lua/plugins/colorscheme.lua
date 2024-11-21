@@ -62,7 +62,7 @@ return {
     opts = {
       contrast = "hard",
       dim_inactive = false,
-      -- transparent_mode = true,
+      transparent_mode = true,
       overrides = {
         -- SignColumn = {bg = "#ff9900"},
         -- WinSeparator = { fg = "#3e4a5b", bg = "#282c34" },
@@ -120,6 +120,13 @@ return {
   {
     "metalelf0/base16-black-metal-scheme",
     lazy = false,
+    config = function()
+      -- Aplicar el esquema de colores
+      -- vim.cmd("colorscheme base16-black-metal")
+      -- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+      -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+      -- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
+    end,
   },
   {
     "gmr458/cold.nvim",
@@ -142,7 +149,13 @@ return {
       vim.api.nvim_create_autocmd("VimEnter", {
         callback = function()
           vim.cmd([[highlight NonText guifg=#3a3a3c]])
+          vim.cmd([[highlight LineNr guifg=#cccccc]])
+          vim.cmd([[highlight Visual guibg=#1a4db3]])
+          -- vim.cmd("highlight CursorLineNr guifg=#ffcc00")
         end,
+      })
+      require("no-clown-fiesta").setup({
+        transparent = true, -- Enable this to disable the bg color
       })
     end,
   },

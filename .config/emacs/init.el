@@ -23,8 +23,6 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-(setq tab-bar-new-tab-choice "*scratch*")
-
 ;; Initialize package sources
 (require 'package)
 
@@ -177,16 +175,19 @@
 (defun ivy-bufferlo-switch-buffer ()
   "Switch to another local buffer.
 If the prefix arument is given, include all buffers."
-    (interactive)
-    (if current-prefix-arg
-        (ivy-switch-buffer)
-      (ivy-read "Switch to local buffer: " #'internal-complete-buffer
-                :predicate (lambda (b) (bufferlo-local-buffer-p (cdr b)))
-                :keymap ivy-switch-buffer-map
-                :preselect (buffer-name (other-buffer (current-buffer)))
-                :action #'ivy--switch-buffer-action
-                :matcher #'ivy--switch-buffer-matcher
-                :caller 'ivy-switch-buffer)))
+  (interactive)
+  (if current-prefix-arg
+      (ivy-switch-buffer)
+    (ivy-read "Switch to local buffer: " #'internal-complete-buffer
+	    ;:predicate (lambda (b) (bufferlo-local-buffer-p (cdr b)))
+	      :predicate (lambda (b) 
+			   (and (bufferlo-local-buffer-p (cdr b)) 
+				(not (string= (buffer-name (cdr b)) "*scratch*"))))
+	      :keymap ivy-switch-buffer-map
+	      :preselect (buffer-name (other-buffer (current-buffer)))
+	      :action #'ivy--switch-buffer-action
+	      :matcher #'ivy--switch-buffer-matcher
+	      :caller 'ivy-switch-buffer)))
 
 (defun open-init-file ()
   (interactive)

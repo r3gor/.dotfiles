@@ -117,7 +117,7 @@ return {
       view = {
         cursorline = true,
         width = 30,
-        relativenumber = false,
+        relativenumber = true,
         signcolumn = "no",
       },
       renderer = {
@@ -179,7 +179,7 @@ return {
 
       require("nvim-tree").setup(opts)
     end,
-    enabled = true,
+    enabled = false,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -333,10 +333,57 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+      default_file_explorer = true,
+      buf_options = {
+        buflisted = true,
+      },
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["<CR>"] = "actions.select",
+        ["|"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+        ["-"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+        ["<Space><Tab>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+        ["<Space>p>"] = "actions.preview",
+        ["<C-q>"] = "actions.close",
+        ["<C-r>"] = "actions.refresh",
+        ["<C-p>"] = "actions.parent",
+        ["_"] = "actions.open_cwd",
+        ["`"] = "actions.cd",
+        ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
+        ["gs"] = "actions.change_sort",
+        ["gx"] = "actions.open_external",
+        ["g."] = "actions.toggle_hidden",
+        ["g\\"] = "actions.toggle_trash",
+      },
+      use_default_keymaps = false,
+    },
+    -- config = function(opts)
+    --   local keymap = vim.keymap
+    --   keymap.set("n", "<leader>e", "<cmd>vsplit | Oil<CR>", { desc = "Open Oil" })
+    --   require("oil").setup(opts)
+    -- end,
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    keys = {
+      {
+        "<leader>ee",
+        "<cmd>Oil<CR>",
+        desc = "Open Oil",
+      },
+      {
+        "<leader>e|",
+        -- vert vs vsplit ??
+        "<cmd>vsplit +Oil<CR>",
+        desc = "Open Oil",
+      },
+      {
+        "<leader>e-",
+        "<cmd>split +Oil<CR>",
+        desc = "Open Oil",
+      },
+    },
   },
   -- {
   --   "dosimple/workspace.vim",
