@@ -287,6 +287,96 @@ return {
           })
         end,
       },
+
+      {
+        "<leader>fd", -- Nuevo mapeo para buscar archivos y carpetas con preview
+        function()
+          require("telescope.pickers")
+            .new({}, {
+              prompt_title = "Find Files and Directories",
+              finder = require("telescope.finders").new_oneshot_job({
+                "fdfind",
+                "--type",
+                "f",
+                "--type",
+                "d",
+                "--hidden",
+                "--exclude",
+                ".git",
+              }, {}),
+              sorter = require("telescope.config").values.generic_sorter({}),
+              previewer = require("telescope.previewers").new_termopen_previewer({
+                get_command = function(entry)
+                  local path = entry.path or entry[1]
+                  -- Si es un directorio, usa `tree`, si es un archivo, usa `cat`
+                  local lfs = vim.loop.fs_stat(path)
+                  if lfs and lfs.type == "directory" then
+                    return { "tree", "-C", "--noreport", "-L", "2", path }
+                  else
+                    return { "cat", path }
+                  end
+                end,
+              }),
+              attach_mappings = function(_, map)
+                map("i", "<CR>", function(prompt_bufnr)
+                  local action_state = require("telescope.actions.state")
+                  local actions = require("telescope.actions")
+                  local entry = action_state.get_selected_entry()
+                  local path = entry[1] -- Obtén la ruta seleccionada
+
+                  actions.close(prompt_bufnr) -- Cierra Telescope
+
+                  local lfs = vim.loop.fs_stat(path)
+                  if lfs and lfs.type == "directory" then
+                    require("oil").open(path) -- Abre carpetas con Oil
+                  else
+                    vim.cmd("edit " .. vim.fn.fnameescape(path)) -- Abre archivos en el buffer actual
+                  end
+                end)
+                return true
+              end,
+            })
+            :find()
+        end,
+        desc = "Find Files and Directories (with Oil and Tree Preview)",
+      },
+      -- {
+      --   "<leader>fd", -- Nuevo mapeo para buscar carpetas con fdfind y mostrar preview
+      --   function()
+      --     require("telescope.pickers")
+      --       .new({}, {
+      --         prompt_title = "Find Directories",
+      --         finder = require("telescope.finders").new_oneshot_job({
+      --           "fdfind",
+      --           "--type",
+      --           "d",
+      --           "--hidden",
+      --           "--exclude",
+      --           ".git",
+      --         }, {}),
+      --         sorter = require("telescope.config").values.generic_sorter({}),
+      --         previewer = require("telescope.previewers").new_termopen_previewer({
+      --           get_command = function(entry)
+      --             return { "tree", "-C", "--noreport", "-L", "1", entry.path or entry[1] }
+      --           end,
+      --         }),
+      --         attach_mappings = function(_, map)
+      --           map("i", "<CR>", function(prompt_bufnr)
+      --             local action_state = require("telescope.actions.state")
+      --             local actions = require("telescope.actions")
+      --             local entry = action_state.get_selected_entry()
+      --             local path = entry[1] -- Obtén la ruta del directorio
+      --
+      --             actions.close(prompt_bufnr) -- Cierra Telescope
+      --             require("oil").open(path) -- Abre la carpeta con Oil
+      --           end)
+      --           return true
+      --         end,
+      --       })
+      --       :find()
+      --   end,
+      --   desc = "Find Directories (with Oil and Tree Preview)",
+      -- },
     },
   },
   {
@@ -335,19 +425,26 @@ return {
     ---@type oil.SetupOpts
     opts = {
       default_file_explorer = true,
+      cleanup_delay_ms = nil,
       buf_options = {
         buflisted = true,
+        -- buftype = "",
+        bufhidden = "hide",
+      },
+      restore_buffers = true,
+      win_options = {
+        winbar = "%{v:lua.require('oil').get_current_dir()}",
       },
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
         ["|"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
         ["-"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
-        ["<Space><Tab>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
-        ["<Space>p>"] = "actions.preview",
-        ["<C-q>"] = "actions.close",
+        -- ["<Space><Tab>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+        ["<C-p>"] = "actions.preview",
+        ["<C-c>"] = "actions.close",
         ["<C-r>"] = "actions.refresh",
-        ["<C-p>"] = "actions.parent",
+        ["<Backspace>"] = "actions.parent",
         ["_"] = "actions.open_cwd",
         ["`"] = "actions.cd",
         ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory", mode = "n" },
@@ -370,6 +467,11 @@ return {
       {
         "<leader>ee",
         "<cmd>Oil<CR>",
+        desc = "Open Oil",
+      },
+      {
+        "<leader>e<tab>",
+        "<cmd>tabnew +Oil<CR>",
         desc = "Open Oil",
       },
       {

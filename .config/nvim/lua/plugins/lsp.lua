@@ -56,6 +56,33 @@ return {
         { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References", nowait = true },
         { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = false }) end, desc = "Goto Implementation" },
         { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = false }) end, desc = "Goto T[y]pe Definition" },
+        { 
+          "|gd", 
+          function()
+            require("telescope.builtin").lsp_definitions({ 
+              reuse_win = true, 
+              jump_type="vsplit" 
+            })
+          end, 
+          desc = "Goto Definition (Vertical Split)", has = "definition" 
+        },
+        { 
+          "-gd", 
+          function()
+            require("telescope.builtin").lsp_definitions({ reuse_win = true, jump_type="split" })
+          end, 
+          desc = "Goto Definition (Horizontal Split)", has = "definition" 
+        },
+        { 
+          "tgd", 
+          function()
+            require("telescope.builtin").lsp_definitions({ 
+              reuse_win = true, 
+              jump_type="tab" 
+            })
+          end, 
+          desc = "Goto Definition (Vertical Split)", has = "definition" 
+        }
       })
     end,
   },

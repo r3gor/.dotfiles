@@ -119,10 +119,17 @@ return {
         },
         width = "fill",
       },
+      -- ignore = {
+      --   buftypes = {},
+      --   filetypes = {},
+      --   floating_wins = false,
+      --   unlisted_buffers = false,
+      --   wintypes = {},
+      -- },
       highlight = {
         groups = {
           InclineNormal = {
-            -- guifg = "#1e222a", -- Color de texto activo
+            -- guifg = "", -- Color de texto activo
             -- guibg = "#5f87af", -- Color de fondo activo
             -- guifg = "#bbc2cf", -- Color de texto inactivo
             guifg = "#fff", -- Color de texto inactivo

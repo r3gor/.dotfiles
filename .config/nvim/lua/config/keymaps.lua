@@ -16,8 +16,14 @@ keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
 -- Copy buffer path
-keymap.set("n", "<leader>cp", function()
+keymap.set("n", "<leader>cpf", function()
   local file_path = vim.fn.expand("%:p")
+  vim.api.nvim_command(string.format(":silent :let @+='%s'", file_path))
+  vim.api.nvim_command(string.format("echo 'Copied: %s'", file_path))
+end, opts)
+
+keymap.set("n", "<leader>cpr", function()
+  local file_path = vim.fn.expand("%:~:.")
   vim.api.nvim_command(string.format(":silent :let @+='%s'", file_path))
   vim.api.nvim_command(string.format("echo 'Copied: %s'", file_path))
 end, opts)
