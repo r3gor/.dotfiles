@@ -1,0 +1,70 @@
+# We use the global settings as a shortcut to define our own separator.
+# Based on the default i3blocks config file.
+full_text=   
+align=center
+color=#cccccc
+separator=false
+separator_block_width=7
+
+[memory2]
+command=$SCRIPT_DIR/memory2/memory2
+label=
+interval=persist
+markup=pango
+bar_chars=_▏▎▍▌▋▊▉██
+bar_size=20
+critical=50
+warning=20
+color_critical=#d9534f
+
+[cpu_usage]
+command=$SCRIPT_DIR/cpu_usage/cpu_usage
+interval=10
+LABEL=CPU 
+
+[separator]
+
+[brightness]
+command=$SCRIPT_DIR/brightness/bin/brightness -a /sys/class/backlight/intel_backlight/actual_brightness -m /sys/class/backlight/intel_backlight/max_brightness
+interval=persist
+
+[volume]
+command=$SCRIPT_DIR/volume/volume
+LABEL=   
+interval=once
+signal=10
+[miniseparator]
+full_text= 
+separator=false
+separator_block_width=0
+
+[battery]
+command=$SCRIPT_DIR/battery2/battery2
+markup=pango
+interval=30
+
+# [separator]
+# [stalonetray]
+# command=stalonetray --icon-size=16 --geometry 200x30+0+0
+
+[separator]
+
+[calendar]
+command=$SCRIPT_DIR/calendar/calendar
+align=center
+interval=1
+color=#F0C674
+LABEL=  
+DATEFMT=+%b %d %Y %H:%M
+HEIGHT=180
+WIDTH=220
+
+[separator]
+
+[me]
+# full_text=<big></big>  rogrp6 <big></big>   
+full_text=<big></big>  <tt><b>rogrp6</b></tt> <big></big> 
+markup=pango
+color=#FF6666
+
+[separator]
