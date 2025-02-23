@@ -53,6 +53,7 @@ DOTFILES_DIR=~/dotfiles
 backup_and_link $DOTFILES_DIR/.bashrc ~/.bashrc
 backup_and_link $DOTFILES_DIR/.gitconfig ~/.gitconfig
 backup_and_link $DOTFILES_DIR/.p10k.zsh ~/.p10k.zsh
+backup_and_link $DOTFILES_DIR/powerlevel10k ~/powerlevel10k
 backup_and_link $DOTFILES_DIR/.tmux.conf ~/.tmux.conf
 backup_and_link $DOTFILES_DIR/.zshrc ~/.zshrc
 backup_and_link $DOTFILES_DIR/.config/Code/User/keybindings.json ~/.config/Code/User/keybindings.json
@@ -66,6 +67,7 @@ backup_and_link "$DOTFILES_DIR/.config/tmux-powerline" ~/.config/tmux-powerline
 backup_and_link "$DOTFILES_DIR/.config/zathura" ~/.config/zathura
 backup_and_link "$DOTFILES_DIR/.config/emacs" ~/.config/emacs
 backup_and_link "$DOTFILES_DIR/.config/conky" ~/.config/conky
+backup_and_link "$DOTFILES_DIR/.config/copyq/themes" ~/.config/copyq/themes
 
 
 echo

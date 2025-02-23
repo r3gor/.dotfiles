@@ -388,7 +388,7 @@ return {
   },
   {
     "petertriho/nvim-scrollbar",
-    config = true,
+    config = false,
   },
   {
     "Bekaboo/deadcolumn.nvim",
@@ -454,6 +454,10 @@ return {
         ["g\\"] = "actions.toggle_trash",
       },
       use_default_keymaps = false,
+
+      view_options = {
+        show_hidden = true,
+      },
     },
     -- config = function(opts)
     --   local keymap = vim.keymap

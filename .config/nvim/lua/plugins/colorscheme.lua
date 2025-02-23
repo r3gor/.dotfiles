@@ -168,7 +168,7 @@ return {
       -- colorscheme = "gruvbox",
       -- colorscheme = "base16-black-metal",
       -- colorscheme = "cold",
-      colorscheme = "no-clown-fiesta",
+      colorscheme = "no-clown-fiesta", -- <<<
       -- colorscheme = "zenwritten",
       -- colorscheme = "solarized-osaka",
       -- colorscheme = "catppuccin-mocha",
